@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Blogr — A modern publishing platform to grow your audience and build your online brand whatever your skill level." />
+  <meta property="og:title" content="Blogr — A Modern Publishing Platform" />
+  <meta property="og:description" content="Grow your audience and build your online brand whatever your skill level." />
+  <meta property="og:type" content="website" />
+  <title>Blogr — A Modern Publishing Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;600&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       LOADING SCREEN
+  ============================================================ -->
+  <div class="loader" id="loader" aria-hidden="true" role="presentation">
+    <div class="loader__logo">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="16" fill="url(#grad-loader)"/>
+        <path d="M14 16C14 16 10 18.5 10 25C10 31.5 14 34 18 34H22V38C22 38 22 42 26 42H40V34H36V30H40C42.5 30 44 28.2 44 25C44 21.8 42.5 20 40 20H36V16C36 16 36 12 32 12H20C17 12 14 14 14 16Z" fill="white" fill-opacity="0.9"/>
+        <defs>
+          <linearGradient id="grad-loader" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop stop-color="hsl(13,100%,72%)"/>
+            <stop offset="1" stop-color="hsl(353,100%,62%)"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="loader__ring" aria-label="Loading…"></div>
+  </div>
+
+  <!-- ============================================================
+       THEME TOGGLE
+  ============================================================ -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="theme-toggle__sun" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M10 1v2M10 17v2M1 10h2M17 10h2M3.22 3.22l1.42 1.42M15.36 15.36l1.42 1.42M3.22 16.78l1.42-1.42M15.36 4.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle__moon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17 12.5A7.5 7.5 0 017.5 3a7.5 7.5 0 100 14 7.5 7.5 0 009.5-4.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- ============================================================
+       HEADER / HERO
+  ============================================================ -->
+  <header class="header" role="banner">
+    <!-- Decorative background circles -->
+    <div class="header__circles" aria-hidden="true">
+      <span class="header__circle header__circle--1"></span>
+      <span class="header__circle header__circle--2"></span>
+    </div>
+
+    <!-- ── Navigation ── -->
+    <nav class="nav" role="navigation" aria-label="Primary navigation">
+      <div class="nav__inner">
+
+        <!-- Logo -->
+        <a href="/" class="nav__logo" aria-label="Blogr — go to homepage">
+          <svg width="112" height="32" viewBox="0 0 112 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 6C6 6 2 8.5 2 15C2 21.5 6 24 10 24H14V28C14 28 14 32 18 32H28V24H24V20H28C30.5 20 32 18.2 32 15C32 11.8 30.5 10 28 10H24V6C24 6 24 2 20 2H10C7.5 2 6 4 6 6Z" fill="white" fill-opacity="0.85"/>
+            <text x="40" y="23" font-family="Overpass, sans-serif" font-weight="600" font-size="24" fill="white" letter-spacing="-0.5">Blogr</text>
+          </svg>
+        </a>
+
+        <!-- Hamburger button (mobile) -->
+        <button
+          class="nav__hamburger"
+          id="hamburger"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+        >
+          <span class="nav__bar" aria-hidden="true"></span>
+          <span class="nav__bar" aria-hidden="true"></span>
+          <span class="nav__bar" aria-hidden="true"></span>
+        </button>
+
+        <!-- Nav menu -->
+        <div class="nav__menu" id="nav-menu" aria-hidden="true">
+          <!-- Mobile overlay -->
+          <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
+
+          <div class="nav__panel" id="nav-panel" role="dialog" aria-label="Navigation">
+
+            <!-- Primary links with dropdowns -->
+            <ul class="nav__list" role="list">
+
+              <!-- Product -->
+              <li class="nav__item">
+                <button
+                  class="nav__trigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="dropdown-product"
+                  data-dropdown="product"
+                >
+                  Product
+                  <svg class="nav__chevron" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <ul class="nav__dropdown" id="dropdown-product" role="listbox" aria-label="Product links" hidden>
+                  <li><a href="#" class="nav__dropdown-link">Overview</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Pricing</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Marketplace</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Features</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Integrations</a></li>
+                </ul>
+              </li>
+
+              <!-- Company -->
+              <li class="nav__item">
+                <button
+                  class="nav__trigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="dropdown-company"
+                  data-dropdown="company"
+                >
+                  Company
+                  <svg class="nav__chevron" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <ul class="nav__dropdown" id="dropdown-company" role="listbox" aria-label="Company links" hidden>
+                  <li><a href="#" class="nav__dropdown-link">About</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Team</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Blog</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Careers</a></li>
+                </ul>
+              </li>
+
+              <!-- Connect -->
+              <li class="nav__item">
+                <button
+                  class="nav__trigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="dropdown-connect"
+                  data-dropdown="connect"
+                >
+                  Connect
+                  <svg class="nav__chevron" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <ul class="nav__dropdown" id="dropdown-connect" role="listbox" aria-label="Connect links" hidden>
+                  <li><a href="#" class="nav__dropdown-link">Contact</a></li>
+                  <li><a href="#" class="nav__dropdown-link">Newsletter</a></li>
+                  <li><a href="#" class="nav__dropdown-link">LinkedIn</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <!-- Divider (mobile only) -->
+            <hr class="nav__divider" aria-hidden="true" />
+
+            <!-- Auth links -->
+            <div class="nav__auth">
+              <a href="#" class="nav__login">Login</a>
+              <a href="#" class="btn btn--cta-white">Sign Up</a>
+            </div>
+
+          </div><!-- /nav__panel -->
+        </div><!-- /nav__menu -->
+
+      </div><!-- /nav__inner -->
+    </nav>
+
+    <!-- ── Hero ── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 class="hero__title reveal" id="hero-heading">
+        A modern publishing<br aria-hidden="true">platform
+      </h1>
+      <p class="hero__subtitle reveal">
+        Grow your audience and build your online brand whatever your skill level.
+      </p>
+      <div class="hero__cta reveal">
+        <a href="#" class="btn btn--red">Start for Free</a>
+        <a href="#" class="btn btn--ghost">Learn More</a>
+      </div>
+    </section>
+
+  </header>
+
+  <!-- ============================================================
+       MAIN
+  ============================================================ -->
+  <main id="main-content">
+
+    <!-- ── SECTION: Designed for the Future ── -->
+    <section class="section section--future" aria-labelledby="future-title">
+      <div class="container">
+
+        <h2 class="section__super-heading reveal" id="future-title">
+          Designed for the future
+        </h2>
+
+        <div class="split split--future">
+
+          <!-- Text column -->
+          <div class="split__text">
+
+            <article class="feature reveal" aria-labelledby="feat-editor">
+              <h3 class="feature__title" id="feat-editor">
+                Introducing an extensible editor
+              </h3>
+              <p class="feature__body">
+                Blogr features an exceedingly intuitive interface which lets you focus on one thing: creating content. The editor supports management of multiple blogs and allows easy manipulation of embeds such as images, videos, and Markdown. Extensibility with plugins and themes provide easy ways to add functionality or change the look and feel of a blog.
+              </p>
+            </article>
+
+            <article class="feature reveal" aria-labelledby="feat-content">
+              <h3 class="feature__title" id="feat-content">
+                Robust content management
+              </h3>
+              <p class="feature__body">
+                Flexible content management enables users to easily move through posts. Increase the usability of your blog by adding customized categories, sections, format, or flow. With this functionality, you're in full control.
+              </p>
+            </article>
+
+            <article class="feature reveal" aria-labelledby="feat-export">
+              <h3 class="feature__title" id="feat-export">
+                Flexible data export
+              </h3>
+              <p class="feature__body">
+                You can export your posts with ease in a handful of ways, including full JSON data with comments, or with user-generated content in a defined format or in a portable export of all media.
+              </p>
+            </article>
+
+          </div><!-- /split__text -->
+
+          <!-- Illustration column -->
+          <div class="split__illustration split__illustration--overflow-right" aria-hidden="true">
+            <!-- Desktop editor illustration -->
+            <svg viewBox="0 0 632 550" fill="none" xmlns="http://www.w3.org/2000/svg" class="illus illus--desktop" role="img" aria-label="Desktop editor interface">
+              <defs>
+                <filter id="f-desktop-shadow" x="-15%" y="-15%" width="130%" height="140%">
+                  <feDropShadow dx="0" dy="12" stdDeviation="24" flood-color="rgba(15,23,42,0.12)"/>
+                </filter>
+                <filter id="f-front-shadow" x="-15%" y="-15%" width="140%" height="150%">
+                  <feDropShadow dx="0" dy="20" stdDeviation="32" flood-color="rgba(15,23,42,0.18)"/>
+                </filter>
+              </defs>
+
+              <!-- Back window -->
+              <g filter="url(#f-desktop-shadow)">
+                <rect x="24" y="40" width="460" height="340" rx="14" fill="white"/>
+                <!-- Title bar -->
+                <rect x="24" y="40" width="460" height="40" rx="14" fill="#f1f5f9"/>
+                <rect x="24" y="66" width="460" height="14" fill="#f1f5f9"/>
+                <!-- Traffic lights -->
+                <circle cx="52" cy="60" r="7" fill="#fc5c65"/>
+                <circle cx="74" cy="60" r="7" fill="#fed330"/>
+                <circle cx="96" cy="60" r="7" fill="#26de81"/>
+                <!-- URL bar -->
+                <rect x="140" y="50" width="260" height="20" rx="10" fill="#e2e8f0"/>
+                <!-- Sidebar -->
+                <rect x="24" y="80" width="96" height="300" fill="#f8fafc"/>
+                <rect x="40" y="104" width="62" height="7" rx="3.5" fill="#cbd5e1"/>
+                <rect x="40" y="122" width="50" height="7" rx="3.5" fill="#cbd5e1"/>
+                <rect x="40" y="140" width="56" height="7" rx="3.5" fill="#cbd5e1"/>
+                <rect x="40" y="158" width="44" height="7" rx="3.5" fill="#cbd5e1"/>
+                <rect x="40" y="192" width="62" height="7" rx="3.5" fill="#cbd5e1"/>
+                <rect x="40" y="210" width="50" height="7" rx="3.5" fill="#cbd5e1"/>
+                <rect x="40" y="228" width="54" height="7" rx="3.5" fill="#cbd5e1"/>
+                <!-- Content lines -->
+                <rect x="136" y="100" width="320" height="9" rx="4.5" fill="#1e293b" opacity="0.7"/>
+                <rect x="136" y="122" width="280" height="7" rx="3.5" fill="#94a3b8" opacity="0.8"/>
+                <rect x="136" y="140" width="300" height="7" rx="3.5" fill="#94a3b8" opacity="0.8"/>
+                <rect x="136" y="158" width="260" height="7" rx="3.5" fill="#94a3b8" opacity="0.6"/>
+                <rect x="136" y="188" width="340" height="9" rx="4.5" fill="#334155" opacity="0.7"/>
+                <rect x="136" y="210" width="280" height="7" rx="3.5" fill="#94a3b8" opacity="0.7"/>
+                <rect x="136" y="228" width="310" height="7" rx="3.5" fill="#94a3b8" opacity="0.7"/>
+                <rect x="136" y="258" width="200" height="7" rx="3.5" fill="#94a3b8" opacity="0.4"/>
+              </g>
+
+              <!-- Front window -->
+              <g filter="url(#f-front-shadow)">
+                <rect x="172" y="180" width="436" height="300" rx="14" fill="white"/>
+                <rect x="172" y="180" width="436" height="40" rx="14" fill="#f1f5f9"/>
+                <rect x="172" y="206" width="436" height="14" fill="#f1f5f9"/>
+                <circle cx="198" cy="200" r="7" fill="#fc5c65"/>
+                <circle cx="220" cy="200" r="7" fill="#fed330"/>
+                <circle cx="242" cy="200" r="7" fill="#26de81"/>
+                <rect x="290" y="190" width="220" height="20" rx="10" fill="#e2e8f0"/>
+                <!-- Content lines -->
+                <rect x="206" y="244" width="360" height="12" rx="6" fill="#0f172a" opacity="0.85"/>
+                <rect x="206" y="270" width="310" height="8" rx="4" fill="#64748b" opacity="0.6"/>
+                <rect x="206" y="288" width="336" height="8" rx="4" fill="#64748b" opacity="0.6"/>
+                <rect x="206" y="306" width="290" height="8" rx="4" fill="#64748b" opacity="0.5"/>
+                <!-- CTA row -->
+                <rect x="206" y="334" width="140" height="40" rx="20" fill="hsl(353,100%,62%)"/>
+                <rect x="358" y="334" width="120" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1.5"/>
+                <!-- Tag badges -->
+                <rect x="206" y="392" width="70" height="22" rx="11" fill="hsl(13,100%,72%)" opacity="0.25"/>
+                <rect x="286" y="392" width="66" height="22" rx="11" fill="#dbeafe"/>
+                <rect x="362" y="392" width="80" height="22" rx="11" fill="#dcfce7"/>
+              </g>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: State of the Art Infrastructure ── -->
+    <section class="section section--infra" aria-labelledby="infra-title">
+      <!-- decorative blob shapes -->
+      <span class="infra__blob infra__blob--tl" aria-hidden="true"></span>
+      <span class="infra__blob infra__blob--br" aria-hidden="true"></span>
+
+      <div class="container">
+        <div class="split split--infra">
+
+          <!-- Phones illustration -->
+          <div class="split__illustration split__illustration--overflow-left" aria-hidden="true">
+            <svg viewBox="0 0 440 580" fill="none" xmlns="http://www.w3.org/2000/svg" class="illus illus--phones" role="img" aria-label="Mobile devices">
+              <!-- Decorative ring -->
+              <circle cx="320" cy="160" r="120" stroke="white" stroke-width="1" stroke-opacity="0.12" fill="none"/>
+              <circle cx="320" cy="160" r="200" stroke="white" stroke-width="1" stroke-opacity="0.06" fill="none"/>
+              <circle cx="60" cy="440" r="80" stroke="white" stroke-width="1" stroke-opacity="0.08" fill="none"/>
+
+              <!-- Phone 1 (back, tilted) -->
+              <g transform="rotate(-8, 160, 280)">
+                <rect x="30" y="80" width="180" height="340" rx="28" fill="white" fill-opacity="0.14" stroke="white" stroke-width="1.5" stroke-opacity="0.25"/>
+                <rect x="48" y="112" width="144" height="272" rx="6" fill="white" fill-opacity="0.06"/>
+                <!-- Notch -->
+                <rect x="90" y="68" width="80" height="14" rx="7" fill="white" fill-opacity="0.18"/>
+                <!-- Home indicator -->
+                <rect x="100" y="410" width="60" height="8" rx="4" fill="white" fill-opacity="0.2"/>
+                <!-- Screen content -->
+                <rect x="60" y="132" width="120" height="8" rx="4" fill="white" fill-opacity="0.5"/>
+                <rect x="60" y="152" width="96" height="7" rx="3.5" fill="white" fill-opacity="0.3"/>
+                <rect x="60" y="170" width="108" height="7" rx="3.5" fill="white" fill-opacity="0.3"/>
+                <rect x="60" y="200" width="120" height="56" rx="10" fill="white" fill-opacity="0.1"/>
+                <rect x="60" y="270" width="72" height="7" rx="3.5" fill="white" fill-opacity="0.3"/>
+                <rect x="60" y="288" width="96" height="7" rx="3.5" fill="white" fill-opacity="0.25"/>
+                <rect x="60" y="316" width="96" height="32" rx="16" fill="white" fill-opacity="0.18"/>
+              </g>
+
+              <!-- Phone 2 (front, main) -->
+              <g transform="rotate(6, 280, 300)">
+                <rect x="180" y="100" width="210" height="390" rx="32" fill="white" fill-opacity="0.22" stroke="white" stroke-width="2" stroke-opacity="0.45"/>
+                <rect x="200" y="140" width="170" height="310" rx="8" fill="white" fill-opacity="0.08"/>
+                <!-- Notch -->
+                <rect x="248" y="88" width="80" height="14" rx="7" fill="white" fill-opacity="0.3"/>
+                <!-- Home indicator -->
+                <rect x="258" y="480" width="68" height="8" rx="4" fill="white" fill-opacity="0.28"/>
+                <!-- Screen content -->
+                <rect x="212" y="158" width="146" height="10" rx="5" fill="white" fill-opacity="0.75"/>
+                <rect x="212" y="180" width="120" height="8" rx="4" fill="white" fill-opacity="0.4"/>
+                <rect x="212" y="198" width="136" height="8" rx="4" fill="white" fill-opacity="0.4"/>
+                <rect x="212" y="230" width="146" height="72" rx="12" fill="white" fill-opacity="0.12"/>
+                <rect x="212" y="316" width="100" height="8" rx="4" fill="white" fill-opacity="0.4"/>
+                <rect x="212" y="334" width="118" height="8" rx="4" fill="white" fill-opacity="0.3"/>
+                <rect x="212" y="360" width="88" height="34" rx="17" fill="white" fill-opacity="0.2"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Text content -->
+          <div class="split__text split__text--light">
+            <h2 class="reveal" id="infra-title">State of the Art Infrastructure</h2>
+            <p class="reveal">
+              With reliability and speed in mind, worldwide data centres ensure your site is always 100% online. Our beefed up CDN locations guarantee your posts and assets load in milliseconds around the globe, keeping your readers happy and engaged.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: Editor Features ── -->
+    <section class="section section--editor" aria-labelledby="editor-title">
+      <div class="container">
+        <div class="split split--editor">
+
+          <!-- Laptop illustration -->
+          <div class="split__illustration split__illustration--overflow-left" aria-hidden="true">
+            <svg viewBox="0 0 600 480" fill="none" xmlns="http://www.w3.org/2000/svg" class="illus illus--laptop" role="img" aria-label="Laptop with code editor">
+              <defs>
+                <filter id="f-laptop-shadow" x="-10%" y="-10%" width="125%" height="130%">
+                  <feDropShadow dx="0" dy="16" stdDeviation="28" flood-color="rgba(15,23,42,0.13)"/>
+                </filter>
+              </defs>
+
+              <g filter="url(#f-laptop-shadow)">
+                <!-- Screen bezel -->
+                <rect x="60" y="20" width="480" height="360" rx="16" fill="#1e293b"/>
+                <!-- Screen surface -->
+                <rect x="80" y="40" width="440" height="320" rx="8" fill="#f8fafc"/>
+
+                <!-- Camera dot -->
+                <circle cx="300" cy="30" r="5" fill="#475569"/>
+
+                <!-- Editor top bar (dark) -->
+                <rect x="80" y="40" width="440" height="38" rx="8" fill="#0f172a"/>
+                <rect x="80" y="62" width="440" height="16" fill="#0f172a"/>
+                <circle cx="104" cy="59" r="6" fill="#fc5c65"/>
+                <circle cx="124" cy="59" r="6" fill="#fed330"/>
+                <circle cx="144" cy="59" r="6" fill="#26de81"/>
+                <!-- Tab pills -->
+                <rect x="172" y="50" width="90" height="18" rx="9" fill="#1e293b"/>
+                <rect x="272" y="50" width="80" height="18" rx="9" fill="#334155"/>
+
+                <!-- File tree sidebar -->
+                <rect x="80" y="78" width="110" height="282" fill="#f1f5f9"/>
+                <!-- Folder/file items -->
+                <rect x="96" y="96" width="76" height="7" rx="3.5" fill="#64748b" opacity="0.9"/>
+                <rect x="96" y="116" width="62" height="7" rx="3.5" fill="#94a3b8"/>
+                <rect x="96" y="134" width="70" height="7" rx="3.5" fill="#94a3b8"/>
+                <rect x="96" y="152" width="58" height="7" rx="3.5" fill="#94a3b8"/>
+                <rect x="96" y="170" width="66" height="7" rx="3.5" fill="#94a3b8"/>
+                <!-- Active file highlight -->
+                <rect x="80" y="188" width="110" height="26" fill="hsl(13,100%,72%)" opacity="0.18"/>
+                <rect x="96" y="196" width="78" height="7" rx="3.5" fill="hsl(353,100%,62%)"/>
+                <rect x="96" y="228" width="62" height="7" rx="3.5" fill="#94a3b8"/>
+                <rect x="96" y="246" width="70" height="7" rx="3.5" fill="#94a3b8"/>
+                <rect x="96" y="264" width="54" height="7" rx="3.5" fill="#94a3b8"/>
+                <rect x="96" y="282" width="66" height="7" rx="3.5" fill="#94a3b8"/>
+
+                <!-- Code area -->
+                <!-- Line numbers gutter -->
+                <rect x="190" y="78" width="28" height="282" fill="#f1f5f9" opacity="0.6"/>
+                <rect x="194" y="96" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="114" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="132" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="150" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="168" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="186" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="204" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="222" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="240" width="16" height="6" rx="3" fill="#cbd5e1"/>
+                <rect x="194" y="258" width="16" height="6" rx="3" fill="#cbd5e1"/>
+
+                <!-- Code syntax lines -->
+                <rect x="228" y="96" width="96" height="7" rx="3.5" fill="hsl(353,100%,62%)" opacity="0.7"/>
+                <rect x="228" y="114" width="220" height="7" rx="3.5" fill="#334155" opacity="0.6"/>
+                <rect x="228" y="132" width="180" height="7" rx="3.5" fill="#94a3b8" opacity="0.7"/>
+                <rect x="228" y="150" width="200" height="7" rx="3.5" fill="#334155" opacity="0.5"/>
+                <rect x="228" y="168" width="140" height="7" rx="3.5" fill="hsl(13,100%,72%)" opacity="0.6"/>
+                <rect x="228" y="186" width="240" height="7" rx="3.5" fill="#334155" opacity="0.65"/>
+                <rect x="228" y="204" width="170" height="7" rx="3.5" fill="#94a3b8" opacity="0.6"/>
+                <rect x="228" y="222" width="210" height="7" rx="3.5" fill="#334155" opacity="0.5"/>
+                <!-- Active line -->
+                <rect x="218" y="238" width="302" height="22" fill="hsl(208,49%,24%)" opacity="0.08"/>
+                <rect x="228" y="244" width="160" height="7" rx="3.5" fill="#0f172a" opacity="0.75"/>
+                <rect x="228" y="264" width="188" height="7" rx="3.5" fill="#94a3b8" opacity="0.5"/>
+                <rect x="228" y="282" width="120" height="7" rx="3.5" fill="#94a3b8" opacity="0.4"/>
+
+                <!-- Status bar -->
+                <rect x="80" y="318" width="440" height="22" fill="#0f172a" opacity="0.9"/>
+                <rect x="96" y="325" width="50" height="7" rx="3.5" fill="hsl(13,100%,72%)" opacity="0.6"/>
+                <rect x="156" y="325" width="50" height="7" rx="3.5" fill="#475569"/>
+                <rect x="440" y="325" width="64" height="7" rx="3.5" fill="#475569"/>
+              </g>
+
+              <!-- Laptop base -->
+              <rect x="20" y="380" width="560" height="28" rx="6" fill="#cbd5e1"/>
+              <rect x="80" y="380" width="440" height="10" rx="3" fill="#94a3b8"/>
+              <rect x="220" y="380" width="160" height="8" rx="4" fill="#e2e8f0"/>
+            </svg>
+          </div>
+
+          <!-- Text content -->
+          <div class="split__text">
+
+            <article class="feature reveal" aria-labelledby="feat-open">
+              <h3 class="feature__title" id="feat-open">Free, open, simple</h3>
+              <p class="feature__body">
+                Blogr is a free and open source application backed by a large community of helpful developers. It supports features such as code blocks, GitHub flavored Markdown, and web mentions.
+              </p>
+            </article>
+
+            <article class="feature reveal" aria-labelledby="feat-tooling">
+              <h3 class="feature__title" id="feat-tooling">Powerful tooling</h3>
+              <p class="feature__body">
+                Batteries included. We built a simple and straightforward CLI tool that makes customization and deployment a breeze, but capable of producing even the most complicated sites.
+              </p>
+            </article>
+
+          </div><!-- /split__text -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: Contact ── -->
+    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+
+        <div class="contact-layout">
+
+          <!-- Left: copy -->
+          <div class="contact-copy">
+            <p class="contact-copy__eyebrow reveal">Get in touch</p>
+            <h2 class="contact-copy__heading reveal" id="contact-title">
+              Start your publishing journey today
+            </h2>
+            <p class="contact-copy__body reveal">
+              Have a question, a partnership idea, or just want to say hello? Drop us a message and our team will get back to you within one business day.
+            </p>
+
+            <ul class="contact-perks reveal" role="list">
+              <li class="contact-perk">
+                <span class="contact-perk__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6.5 10l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Reply within one business day
+              </li>
+              <li class="contact-perk">
+                <span class="contact-perk__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6.5 10l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                No spam, ever — we promise
+              </li>
+              <li class="contact-perk">
+                <span class="contact-perk__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6.5 10l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Your data is kept private and secure
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: form card -->
+          <div class="contact-card reveal">
+
+            <!-- FORM STATE -->
+            <form
+              class="contact-form"
+              id="contactForm"
+              novalidate
+              aria-label="Contact form"
+            >
+
+              <!-- Name -->
+              <div class="field" data-field="name">
+                <label class="field__label" for="field-name">Full name</label>
+                <div class="field__wrap">
+                  <input
+                    class="field__input"
+                    id="field-name"
+                    type="text"
+                    name="name"
+                    autocomplete="name"
+                    placeholder="Jane Doe"
+                    aria-required="true"
+                    aria-describedby="err-name"
+                  />
+                  <span class="field__icon field__icon--ok" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="field__icon field__icon--err" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 3v6M9 13v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </div>
+                <p class="field__error" id="err-name" role="alert" aria-live="polite"></p>
+              </div>
+
+              <!-- Email -->
+              <div class="field" data-field="email">
+                <label class="field__label" for="field-email">Email address</label>
+                <div class="field__wrap">
+                  <input
+                    class="field__input"
+                    id="field-email"
+                    type="email"
+                    name="email"
+                    autocomplete="email"
+                    placeholder="jane@example.com"
+                    aria-required="true"
+                    aria-describedby="err-email"
+                  />
+                  <span class="field__icon field__icon--ok" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="field__icon field__icon--err" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 3v6M9 13v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </div>
+                <p class="field__error" id="err-email" role="alert" aria-live="polite"></p>
+              </div>
+
+              <!-- Subject -->
+              <div class="field" data-field="subject">
+                <label class="field__label" for="field-subject">Subject</label>
+                <div class="field__wrap field__wrap--select">
+                  <select
+                    class="field__input field__input--select"
+                    id="field-subject"
+                    name="subject"
+                    aria-required="true"
+                    aria-describedby="err-subject"
+                  >
+                    <option value="">Choose a topic…</option>
+                    <option value="general">General enquiry</option>
+                    <option value="pricing">Pricing & plans</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="bug">Bug report</option>
+                    <option value="other">Something else</option>
+                  </select>
+                  <span class="field__select-arrow" aria-hidden="true">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+                <p class="field__error" id="err-subject" role="alert" aria-live="polite"></p>
+              </div>
+
+              <!-- Message -->
+              <div class="field" data-field="message">
+                <label class="field__label" for="field-message">
+                  Message
+                  <span class="field__counter" id="msg-counter" aria-live="polite">0 / 500</span>
+                </label>
+                <div class="field__wrap">
+                  <textarea
+                    class="field__input field__input--textarea"
+                    id="field-message"
+                    name="message"
+                    rows="5"
+                    maxlength="500"
+                    placeholder="Tell us what's on your mind…"
+                    aria-required="true"
+                    aria-describedby="err-message"
+                  ></textarea>
+                </div>
+                <p class="field__error" id="err-message" role="alert" aria-live="polite"></p>
+              </div>
+
+              <!-- Submit -->
+              <button class="contact-submit" type="submit" id="contactSubmit">
+                <span class="contact-submit__label">Send message</span>
+                <span class="contact-submit__spinner" aria-hidden="true"></span>
+              </button>
+
+            </form>
+
+            <!-- SUCCESS STATE (hidden until form submitted) -->
+            <div class="contact-success" id="contactSuccess" aria-live="polite" hidden>
+              <div class="contact-success__icon" aria-hidden="true">
+                <svg class="checkmark" width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle class="checkmark__circle" cx="36" cy="36" r="32" stroke="url(#grad-check)" stroke-width="3" fill="none"/>
+                  <path class="checkmark__tick" d="M20 36l12 12 20-20" stroke="url(#grad-check)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <defs>
+                    <linearGradient id="grad-check" x1="4" y1="4" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="hsl(13,100%,72%)"/>
+                      <stop offset="1" stop-color="hsl(353,100%,62%)"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h3 class="contact-success__title">Message sent!</h3>
+              <p class="contact-success__body">
+                Thanks for reaching out. We'll reply to your inbox within one business day.
+              </p>
+              <button class="contact-success__reset" id="contactReset" type="button">
+                Send another message
+              </button>
+            </div>
+
+          </div><!-- /contact-card -->
+
+        </div><!-- /contact-layout -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Logo -->
+        <div class="footer__brand">
+          <a href="/" class="footer__logo" aria-label="Blogr — go to homepage">
+            <svg width="112" height="32" viewBox="0 0 112 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 6C6 6 2 8.5 2 15C2 21.5 6 24 10 24H14V28C14 28 14 32 18 32H28V24H24V20H28C30.5 20 32 18.2 32 15C32 11.8 30.5 10 28 10H24V6C24 6 24 2 20 2H10C7.5 2 6 4 6 6Z" fill="white" fill-opacity="0.85"/>
+              <text x="40" y="23" font-family="Overpass, sans-serif" font-weight="600" font-size="24" fill="white" letter-spacing="-0.5">Blogr</text>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Product nav -->
+        <nav class="footer__nav" aria-label="Product navigation">
+          <h3 class="footer__heading">Product</h3>
+          <ul role="list">
+            <li><a href="#" class="footer__link">Overview</a></li>
+            <li><a href="#" class="footer__link">Pricing</a></li>
+            <li><a href="#" class="footer__link">Marketplace</a></li>
+            <li><a href="#" class="footer__link">Features</a></li>
+            <li><a href="#" class="footer__link">Integrations</a></li>
+          </ul>
+        </nav>
+
+        <!-- Company nav -->
+        <nav class="footer__nav" aria-label="Company navigation">
+          <h3 class="footer__heading">Company</h3>
+          <ul role="list">
+            <li><a href="#" class="footer__link">About</a></li>
+            <li><a href="#" class="footer__link">Team</a></li>
+            <li><a href="#" class="footer__link">Blog</a></li>
+            <li><a href="#" class="footer__link">Careers</a></li>
+          </ul>
+        </nav>
+
+        <!-- Connect nav -->
+        <nav class="footer__nav" aria-label="Connect navigation">
+          <h3 class="footer__heading">Connect</h3>
+          <ul role="list">
+            <li><a href="#" class="footer__link">Contact</a></li>
+            <li><a href="#" class="footer__link">Newsletter</a></li>
+            <li><a href="#" class="footer__link">LinkedIn</a></li>
+          </ul>
+        </nav>
+
+      </div><!-- /footer__grid -->
+    </div><!-- /container -->
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
