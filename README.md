@@ -84,7 +84,6 @@ blogr/
 
 https://blogr-landing-page-sm.netlify.app/
 
-### GitHub Pages
 
 ```bash
 #
