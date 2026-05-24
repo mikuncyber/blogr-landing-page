@@ -1,0 +1,99 @@
+/* ============================================================
+   BLOGR LANDING PAGE — style.css
+   Frontend Mentor Challenge · Professional Recreation
+   Mobile-first · CSS Custom Properties · BEM
+   ============================================================ */
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================================ */
+:root {
+  --clr-red-light: hsl(13, 100%, 72%);
+  --clr-red: hsl(353, 100%, 62%);
+  --clr-red-hover: hsl(353, 100%, 55%);
+  --clr-heading: hsl(208, 49%, 24%);
+  --clr-body: hsl(207, 13%, 34%);
+  --clr-light-body: hsl(0,0%,84%);
+  --clr-white: hsl(0,0%,100%);
+  --clr-bg: hsl(0,0%,100%);
+  --clr-bg-subtle: hsl(210,40%,98%);
+  --clr-footer: hsl(240,10%,16%);
+  --grad-hero-start: hsl(13,100%,72%);
+  --grad-hero-end: hsl(353,100%,62%);
+  --font-heading:'Overpass',system-ui,sans-serif;
+  --font-body:'Ubuntu',system-ui,sans-serif;
+}
+
+/* RESET */
+*,
+*::before,
+*::after{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:var(--font-body);
+color:var(--clr-body);
+background:var(--clr-bg);
+overflow-x:hidden;
+}
+
+/* HERO */
+.header{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+background:linear-gradient(
+to bottom right,
+var(--grad-hero-start),
+var(--grad-hero-end)
+);
+color:white;
+border-bottom-right-radius:6rem;
+overflow:hidden;
+}
+
+.hero{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:6rem 2rem;
+}
+
+.hero__title{
+font-size:clamp(2rem,6vw,4rem);
+color:white;
+margin-bottom:1rem;
+}
+
+.hero__subtitle{
+opacity:.9;
+max-width:40rem;
+margin-bottom:2rem;
+}
+
+.btn{
+padding:.8rem 1.5rem;
+border-radius:999px;
+border:none;
+cursor:pointer;
+}
+
+.btn--red{
+background:white;
+color:var(--clr-red);
+}
+
+.btn--ghost{
+border:2px solid white;
+background:transparent;
+color:white;
+}
